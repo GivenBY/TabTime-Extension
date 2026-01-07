@@ -2,11 +2,13 @@ function todayKey() {
   return new Date().toISOString().slice(0, 10);
 }
 
+const api = typeof browser !== "undefined" ? browser : chrome;
+
 async function ensureToday() {
-  const { usageDate } = await chrome.storage.local.get(["usageDate"]);
+  const { usageDate } = await api.storage.local.get(["usageDate"]);
   const today = todayKey();
   if (usageDate !== today) {
-    await chrome.storage.local.set({ usage: {}, usageDate: today });
+    await api.storage.local.set({ usage: {}, usageDate: today });
   }
 }
 
@@ -29,7 +31,7 @@ async function commitTime() {
 }
 
 async function updateActiveTab() {
-  const [tab] = await chrome.tabs.query({
+  const [tab] = await api.tabs.query({
     active: true,
     lastFocusedWindow: true,
   });

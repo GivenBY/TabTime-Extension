@@ -1,0 +1,14 @@
+{
+  "name": "tabtime-extension",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build:chromium": "node scripts/build.mjs chromium",
+    "build:firefox": "node scripts/build.mjs firefox",
+    "build": "npm run build:chromium && npm run build:firefox",
+    "zip:chromium": "cd build/chromium && zip -r ../../chromium.zip .",
+    "zip:firefox": "cd build/firefox && zip -r ../../firefox.zip .",
+    "release": "npm run build && npm run zip:chromium && npm run zip:firefox"
+  }
+}
