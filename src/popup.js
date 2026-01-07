@@ -18,13 +18,23 @@ function render() {
     list.innerHTML = "";
 
     if (!rows.length) {
-      list.innerHTML = "<li>No usage yet</li>";
+      const li = document.createElement("li");
+      li.textContent = "No usage yet";
+      list.appendChild(li);
       return;
     }
 
     rows.forEach(({ domain, ms }) => {
       const li = document.createElement("li");
-      li.innerHTML = `<span>${domain}</span><span>${format(ms)}</span>`;
+
+      const domainSpan = document.createElement("span");
+      domainSpan.textContent = domain;
+
+      const timeSpan = document.createElement("span");
+      timeSpan.textContent = format(ms);
+
+      li.appendChild(domainSpan);
+      li.appendChild(timeSpan);
       list.appendChild(li);
     });
   });
