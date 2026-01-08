@@ -13,4 +13,4 @@ A Chrome extension to track time spent on each website.
 
 ---
 
-![Main Icon](./icons/main.png)
+![Main Icon](./assets/main.png)
